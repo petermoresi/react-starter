@@ -1,6 +1,4 @@
-# React with PennyPixels
-
-Boilerplate code to start a new PennyPixels or bootstrap project.
+# React Starter 
 
 Clone this repo and make a new app.
 
