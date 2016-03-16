@@ -9,10 +9,11 @@ module.exports = {
   ],
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: 'app.js',
     publicPath: '/static/'
   },
   plugins: [
+    new ExtractTextPlugin('app.css'),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
@@ -23,8 +24,7 @@ module.exports = {
       compressor: {
         warnings: false
       }
-    }),
-    new ExtractTextPlugin('app.css')
+    })
   ],
   module: {
     loaders: [{
@@ -33,7 +33,9 @@ module.exports = {
       include: path.join(__dirname, 'src')
     }, {
       test: /\.scss$/,
-      loaders: ['style', 'css', 'sass']
+      loader: ExtractTextPlugin.extract(
+        "style",
+        "css!sass")
     }]
   }
 };
